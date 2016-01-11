@@ -8,9 +8,9 @@ import org.openqa.selenium.support.PageFactory;
 /**
  * Created by Siarhei_Chyhir on 1/4/2016.
  */
-public class LoginPage {
+public class LoginPage extends Page{
 
-    private WebDriver driver;
+    //private WebDriver driver;
 
     @FindBy(xpath= "//input[@id='userid'][@class='fld'][@type='text']")
     private WebElement inputLogin;
@@ -22,18 +22,18 @@ public class LoginPage {
     private WebElement buttonSignIn;
 
     public LoginPage(WebDriver driver){
-        this.driver = driver;
-        PageFactory.initElements(this.driver, this);
+        super(driver);//this.driver = driver;
+        PageFactory.initElements(getDriver(), this);
     }
 
     public String getPageTitle(){
-        return this.driver.getTitle();
+        return getDriver().getTitle();
     }
 
     public HomePage login(String username, String password){
         inputLogin.sendKeys(username);
         inputPassword.sendKeys(password);
         buttonSignIn.click();
-        return new HomePage(this.driver);
+        return new HomePage(getDriver());
     }
 }
