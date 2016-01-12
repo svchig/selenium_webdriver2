@@ -50,4 +50,17 @@ public class CartPage extends Page{
         return new CartPage(getDriver());
     }
 
+    public void removeProductfromCart(){
+        buttonCartRemove.click();
+    }
+
+    public CartPage selectAcountControl(){
+        buttonAccountControl.click();
+        return new CartPage(getDriver());
+    }
+
+    public StartPage signOutFromEBay(){
+        linkAccountSignOut.click();
+        return new StartPage(getDriver());
+    }
 }

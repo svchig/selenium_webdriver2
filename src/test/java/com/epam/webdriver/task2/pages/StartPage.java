@@ -5,6 +5,8 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.List;
+
 /**
  * Created by Siarhei_Chyhir on 1/4/2016.
  */
@@ -15,6 +17,9 @@ public class StartPage extends Page{
 
     @FindBy(xpath= "//a[contains(@href,'signin.ebay.com')]")
     private WebElement linkSignIn;
+
+    @FindBy(xpath= "//span[@class='gh-eb-Geo-txt']")
+    private List<WebElement> allLanguages;
 
     public StartPage(WebDriver driver){
         super(driver);//this.driver = driver;
@@ -34,4 +39,15 @@ public class StartPage extends Page{
     public String getPageTitle(){
         return getDriver().getTitle();
     }
+
+
+    /*!!!!!!!!!!!!Need to investigate javascript I cannot get second language*/
+//    public StartPage setLanguageSetting(String languageSetting){
+//        for (WebElement language: allLanguages){
+//            if (language.getText().equalsIgnoreCase(languageSetting)){
+//                getDriver().findElement(By.xpath("//span[@class='gh-eb-Geo-txt' and contains(text(), " + languageSetting +")]")).click();
+//            }
+//        }
+//        return this;
+//    }
 }
