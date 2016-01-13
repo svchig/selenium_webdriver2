@@ -1,5 +1,6 @@
 package com.epam.webdriver.task2.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -13,13 +14,14 @@ import java.util.List;
  */
 public class CartPage extends Page{
 
-//    private WebDriver driver;
-
     @FindBy(xpath= "//i[@id='gh-cart-i']")
     private WebElement buttonCartNavigation;
 
     @FindBy(xpath= "//a[@class='action actionLink'][@aria-label='Remove']")
-    private WebElement buttonCartRemove;
+    private WebElement buttonCartRemoveEng;
+
+    @FindBy(xpath= "//a[@class='action actionLink'][@aria-label='Удалить']")
+    private WebElement buttonCartRemoveRu;
 
     @FindBy(xpath= "//i[@id='gh-cart-n']")
     private List<WebElement> allProductsInCart;
@@ -36,13 +38,8 @@ public class CartPage extends Page{
         PageFactory.initElements(getDriver(), this);
     }
 
-    public String getPageTitle(){
-        return getDriver().getTitle();
-    }
-
     public int getProductCount(){
-        int iProductCount = allProductsInCart.size();
-        return iProductCount;
+        return allProductsInCart.size();
     }
 
     public CartPage navigateToCart(){
@@ -50,8 +47,11 @@ public class CartPage extends Page{
         return new CartPage(getDriver());
     }
 
-    public void removeProductfromCart(){
-        buttonCartRemove.click();
+    public void removeProductFromCart(){
+        if (isElementPresent(By.xpath("//a[@class='action actionLink'][@aria-label='Remove']")))
+            buttonCartRemoveEng.click();
+        else if(isElementPresent(By.xpath("//a[@class='action actionLink'][@aria-label='Удалить']")))
+            buttonCartRemoveRu.click();
     }
 
     public CartPage selectAcountControl(){

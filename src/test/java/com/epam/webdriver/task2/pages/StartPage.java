@@ -36,10 +36,6 @@ public class StartPage extends Page{
         return new LoginPage(getDriver());
     }
 
-    public String getPageTitle(){
-        return getDriver().getTitle();
-    }
-
 
     /*!!!!!!!!!!!!Need to investigate javascript I cannot get second language*/
 //    public StartPage setLanguageSetting(String languageSetting){

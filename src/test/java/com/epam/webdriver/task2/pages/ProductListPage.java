@@ -5,14 +5,14 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
+import java.util.List;
+
 /**
  * Created by Siarhei_Chyhir on 1/11/2016.
  */
 public class ProductListPage extends Page{
 
-//    private WebDriver driver;
-
-    public static final String partialProductName = "TAC FORCE BLACK ";
+    public static final String partialProductName = "Tac Force ";
 
     @FindBy(xpath= "//input[@id='gh-ac'][@type='text']")
     private WebElement searchTextBox;
@@ -21,7 +21,7 @@ public class ProductListPage extends Page{
     private WebElement buttonSearch;
 
     @FindBy(id= "ResultSetItems")
-    private WebElement SearchResultList;
+    private List<WebElement> searchResultListItems;
 
     @FindBy(partialLinkText= partialProductName)
     private WebElement productNameLink;
@@ -32,10 +32,6 @@ public class ProductListPage extends Page{
     public ProductListPage(WebDriver driver){
         super(driver);//this.driver = driver;
         PageFactory.initElements(getDriver(), this);
-    }
-
-    public String getPageTitle(){
-        return getDriver().getTitle();
     }
 
     public ProductListPage productSearch(String productName){
@@ -49,5 +45,7 @@ public class ProductListPage extends Page{
         return new ProductPage(getDriver());
     }
 
-
+    public int searchProductsCount(){
+        return searchResultListItems.size();
+    }
 }

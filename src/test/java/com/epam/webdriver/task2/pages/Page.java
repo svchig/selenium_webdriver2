@@ -24,4 +24,10 @@ public abstract class Page {
         return driver.findElements(locator).size()>0;
     }
 
+    public String getPageTitle(){
+        return driver.getTitle();
+    }
+
+    public String getCurrentURL(){return driver.getCurrentUrl();}
+
 }

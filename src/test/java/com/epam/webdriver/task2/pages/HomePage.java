@@ -1,5 +1,6 @@
 package com.epam.webdriver.task2.pages;
 
+import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
@@ -10,7 +11,6 @@ import org.openqa.selenium.support.PageFactory;
  */
 public class HomePage extends Page{
 
-    //private WebDriver driver;
 
     @FindBy(xpath= "//input[@id='gh-ac'][@type='text']")
     private WebElement searchTextBox;
@@ -21,13 +21,12 @@ public class HomePage extends Page{
     @FindBy(xpath= "//i[@id='gh-cart-i']")
     private WebElement buttonCartNavigation;
 
+    @FindBy(xpath = "//a[@id='gh-ug']/b")
+    private WebElement accountNamelink;
+
     public HomePage(WebDriver driver){
         super(driver);//this.driver = driver;
         PageFactory.initElements(getDriver(), this);
-    }
-
-    public String getPageTitle(){
-        return getDriver().getTitle();
     }
 
     public ProductListPage productSearch(String productName){
@@ -35,4 +34,10 @@ public class HomePage extends Page{
         buttonSearch.click();
         return new ProductListPage(getDriver());
     }
+    public String getAccountName(){
+        if (isElementPresent(By.xpath("//a[@id='gh-ug']/b"))){
+            return accountNamelink.getText();
+        }else return "";
+    }
+
 }

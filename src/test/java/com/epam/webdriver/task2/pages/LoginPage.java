@@ -10,8 +10,6 @@ import org.openqa.selenium.support.PageFactory;
  */
 public class LoginPage extends Page{
 
-    //private WebDriver driver;
-
     @FindBy(xpath= "//input[@id='userid'][@class='fld'][@type='text']")
     private WebElement inputLogin;
 
@@ -24,10 +22,6 @@ public class LoginPage extends Page{
     public LoginPage(WebDriver driver){
         super(driver);//this.driver = driver;
         PageFactory.initElements(getDriver(), this);
-    }
-
-    public String getPageTitle(){
-        return getDriver().getTitle();
     }
 
     public HomePage login(String username, String password){
