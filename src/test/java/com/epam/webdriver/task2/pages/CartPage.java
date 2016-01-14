@@ -23,7 +23,7 @@ public class CartPage extends Page{
     @FindBy(xpath= "//a[@class='action actionLink'][@aria-label='Удалить']")
     private WebElement buttonCartRemoveRu;
 
-    @FindBy(xpath= "//i[@id='gh-cart-n']")
+    @FindBy(xpath= "//div[contains(@id,'sellerBucket_')]")
     private List<WebElement> allProductsInCart;
 
     @FindBy(xpath= "//a[@id='gh-ug'][@class='gh-ua gh-control'][@role='button']")
