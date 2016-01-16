@@ -13,21 +13,6 @@ import org.testng.annotations.Test;
  */
 public class EBayTest {
 
-/*!!!Need to do after language selector will be fixed*/
-//    String locale = "English";
-
-//    @Factory(dataProvider = "locales")
-//    public EBayTest(String locale){
-//        this.locale=locale;
-//    }
-//
-//    @DataProvider(name = "locales", parallel = true)
-//    public Object[][] locales() {
-//        return new Object[][]{
-//                { "English" }, { "Русский" }
-//        };
-//    }
-
     public static final String  USERNAME = "siarhei_chyhir@epam.com";
     public static final String PASSWORD = "Sergh13";
 
@@ -43,7 +28,6 @@ public class EBayTest {
     @Test(description = "eBay smoke test")
     public void eBaySmokeTest(){
         StartPage startPage = new StartPage(driver);
-//        startPage.setLanguageSetting(locale);
         Assert.assertTrue(startPage.getPageTitle().contains("Electronics, Cars, Fashion, Collectibles, Coupons and More | eBay")
                 , "eBay page is not opened");
 
@@ -72,7 +56,7 @@ public class EBayTest {
 
 
         cartPage.removeProductFromCart();
-        cartPage.selectAcountControl();
+        cartPage.selectAccountControl();
 
         startPage = cartPage.signOutFromEBay();
         System.out.println(startPage.getPageTitle());

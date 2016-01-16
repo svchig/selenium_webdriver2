@@ -54,7 +54,7 @@ public class CartPage extends Page{
             buttonCartRemoveRu.click();
     }
 
-    public CartPage selectAcountControl(){
+    public CartPage selectAccountControl(){
         buttonAccountControl.click();
         return new CartPage(getDriver());
     }
