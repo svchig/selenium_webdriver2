@@ -13,7 +13,7 @@ import java.util.List;
 public class StartPage extends Page{
 
     public static final String URL = "http://ebay.com";
-    //private WebDriver driver;
+    private String partialTitleName = "Electronics, Cars, Fashion, Collectibles, Coupons and More | eBay";
 
     @FindBy(xpath= "//a[contains(@href,'signin.ebay.com')]")
     private WebElement linkSignIn;
@@ -36,14 +36,8 @@ public class StartPage extends Page{
         return new LoginPage(getDriver());
     }
 
+    public Boolean isPageOpened() {
+        return checkisPageOpenedByTitle(partialTitleName);
+    }
 
-    /*!!!!!!!!!!!!Need to investigate javascript I cannot get second language*/
-//    public StartPage setLanguageSetting(String languageSetting){
-//        for (WebElement language: allLanguages){
-//            if (language.getText().equalsIgnoreCase(languageSetting)){
-//                getDriver().findElement(By.xpath("//span[@class='gh-eb-Geo-txt' and contains(text(), " + languageSetting +")]")).click();
-//            }
-//        }
-//        return this;
-//    }
 }

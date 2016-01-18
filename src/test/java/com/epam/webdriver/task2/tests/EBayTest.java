@@ -28,38 +28,31 @@ public class EBayTest {
     @Test(description = "eBay smoke test")
     public void eBaySmokeTest(){
         StartPage startPage = new StartPage(driver);
-        Assert.assertTrue(startPage.getPageTitle().contains("Electronics, Cars, Fashion, Collectibles, Coupons and More | eBay")
-                , "eBay page is not opened");
+        Assert.assertTrue(startPage.isPageOpened(), "eBay page is not opened");
 
         LoginPage loginPage = startPage.singIn();
-        Assert.assertTrue(loginPage.getCurrentURL().contains("signin.ebay"), "Sighin eBay page is not opened");
+        Assert.assertTrue(loginPage.isPageOpened(), "Sighin eBay page is not opened");
 
         HomePage homePage = loginPage.login(USERNAME, PASSWORD);
-        Assert.assertTrue(homePage.getPageTitle().contains("Electronics, Cars, Fashion, Collectibles, Coupons and More | eBay")
-                , "eBay page is not opened");
+        Assert.assertTrue(homePage.isPageOpened(), "eBay page is not opened");
         Assert.assertTrue(homePage.getCurrentURL().contains("ebay.com"), "eBay home page is not opened");
         Assert.assertTrue(homePage.getAccountName().contains("Siarhei"), "User did not login on eBay");
 
         ProductListPage productListPage = homePage.productSearch("knives");
-        Assert.assertTrue(productListPage.getPageTitle().contains("knives")
-                , "Search Result List with knives does not present on eBay");
+        Assert.assertTrue(productListPage.isPageOpened(), "Search Result List with knives does not present on eBay");
         Assert.assertTrue(productListPage.searchProductsCount() > 0
                 , "No products in Search Result List on eBay");
 
         ProductPage productPage = productListPage.selectProductFromList();
-        Assert.assertTrue(productPage.getPageTitle().toUpperCase().contains("TAC FORCE ")
-                , "The product page is not opened");
+        Assert.assertTrue(productPage.isPageOpened(), "The product page is not opened");
 
         CartPage cartPage = productPage.addProductToCart();
-        Assert.assertTrue(cartPage.getCurrentURL().contains("cart.payments.ebay.com")
-                , "The shopping cart page is not opened");
-
+        Assert.assertTrue(cartPage.isPageOpened(), "The shopping cart page is not opened");
 
         cartPage.removeProductFromCart();
         cartPage.selectAccountControl();
 
         startPage = cartPage.signOutFromEBay();
-        System.out.println(startPage.getPageTitle());
         Assert.assertTrue(startPage.getCurrentURL().contains("signin.ebay"), "Sighin eBay page is not opened");
 
 

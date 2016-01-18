@@ -12,7 +12,8 @@ import java.util.List;
  */
 public class ProductListPage extends Page{
 
-    public static final String partialProductName = "Tac Force ";
+    private String partialTitleName = "knives";
+    private static final String partialProductName = "Tac Force ";
 
     @FindBy(xpath= "//input[@id='gh-ac'][@type='text']")
     private WebElement searchTextBox;
@@ -30,7 +31,7 @@ public class ProductListPage extends Page{
     private WebElement buttonCartNavigation;
 
     public ProductListPage(WebDriver driver){
-        super(driver);//this.driver = driver;
+        super(driver);
         PageFactory.initElements(getDriver(), this);
     }
 
@@ -47,5 +48,9 @@ public class ProductListPage extends Page{
 
     public int searchProductsCount(){
         return searchResultListItems.size();
+    }
+
+    public Boolean isPageOpened() {
+        return checkisPageOpenedByTitle(partialTitleName);
     }
 }

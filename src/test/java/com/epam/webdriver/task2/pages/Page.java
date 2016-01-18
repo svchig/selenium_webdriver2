@@ -8,8 +8,6 @@ import org.openqa.selenium.WebDriver;
  */
 public abstract class Page {
 
-    protected String PAGE_TITLE;
-
     protected final WebDriver driver;
 
     public Page(WebDriver driver) {
@@ -30,4 +28,12 @@ public abstract class Page {
 
     public String getCurrentURL(){return driver.getCurrentUrl();}
 
+
+    public Boolean checkisPageOpenedByTitle(String Page_Title){
+        return getPageTitle().toLowerCase().contains(Page_Title.toLowerCase());
+    }
+
+    public Boolean checkisPageOpenedbyURL(String Page_URL){
+        return getCurrentURL().toLowerCase().contains(Page_URL.toLowerCase());
+    }
 }

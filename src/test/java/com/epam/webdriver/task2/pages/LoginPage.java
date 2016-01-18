@@ -10,6 +10,8 @@ import org.openqa.selenium.support.PageFactory;
  */
 public class LoginPage extends Page{
 
+    private String partialURL = "signin.ebay";
+
     @FindBy(xpath= "//input[@id='userid'][@class='fld'][@type='text']")
     private WebElement inputLogin;
 
@@ -29,5 +31,9 @@ public class LoginPage extends Page{
         inputPassword.sendKeys(password);
         buttonSignIn.click();
         return new HomePage(getDriver());
+    }
+
+    public boolean isPageOpened(){
+        return checkisPageOpenedbyURL(partialURL);
     }
 }

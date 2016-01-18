@@ -12,6 +12,8 @@ import org.openqa.selenium.support.PageFactory;
 public class HomePage extends Page{
 
 
+    private String partialTitleName = "Electronics, Cars, Fashion, Collectibles, Coupons and More | eBay";
+
     @FindBy(xpath= "//input[@id='gh-ac'][@type='text']")
     private WebElement searchTextBox;
 
@@ -25,7 +27,7 @@ public class HomePage extends Page{
     private WebElement accountNamelink;
 
     public HomePage(WebDriver driver){
-        super(driver);//this.driver = driver;
+        super(driver);
         PageFactory.initElements(getDriver(), this);
     }
 
@@ -38,6 +40,10 @@ public class HomePage extends Page{
         if (isElementPresent(By.xpath("//a[@id='gh-ug']/b"))){
             return accountNamelink.getText();
         }else return "";
+    }
+
+    public Boolean isPageOpened() {
+        return checkisPageOpenedByTitle(partialTitleName);
     }
 
 }
